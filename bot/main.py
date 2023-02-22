@@ -4,5 +4,8 @@ import time
 
 with Booking() as bot:
   bot.land_first_page()
-  print("Exiting...")
+  time.sleep(5)
+  bot.close_popup()
+  bot.change_currency()
+
 
