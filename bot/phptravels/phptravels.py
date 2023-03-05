@@ -2,6 +2,7 @@ from selenium import webdriver
 import os 
 import phptravels.constants as const  
 from selenium.webdriver.common.by import By
+import time
 
 
 class Phptravels(webdriver.Chrome):
@@ -22,8 +23,10 @@ class Phptravels(webdriver.Chrome):
         self.implicitly_wait(15)
     
     def check_nav_links(self):
-        nav_links = self.find_elements(By.XPATH, const.NAV_LINKS)
-        return nav_links
+        pricing_button = webdriver.find_element(By.CSS_SELECTOR, 'a[class="jfHeader-menuListLink jfHeader-dynamicLink js-tracking js-myforms"')
+        pricing_button.click()
+        time.sleep(1)
+        
     
 
 
