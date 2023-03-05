@@ -1,15 +1,15 @@
 from selenium import webdriver
 import os 
-import booking.constants as const  
+import phptravels.constants as const  
 from selenium.webdriver.common.by import By
 
 
-class Booking(webdriver.Chrome):
+class Phptravels(webdriver.Chrome):
     def __init__(self, driver_path=r"usr/bin/chromedriver", teardown=False):
         self.driver_path = driver_path
         self.teardown = teardown
         os.environ['PATH'] += self.driver_path
-        super(Booking, self).__init__()
+        super(Phptravels, self).__init__()
         self.implicitly_wait(15)
         self.maximize_window()
         
@@ -21,13 +21,10 @@ class Booking(webdriver.Chrome):
         self.get(const.BASE_URL)
         self.implicitly_wait(15)
     
-    def close_popup(self):
-        popup = self.find_element(By.CSS_SELECTOR, 'button[class="b6dc9a9e69 e25355d3ee"]')
-        popup.click()
+    def check_nav_links(self):
+        nav_links = self.find_elements(By.XPATH, const.NAV_LINKS)
+        return nav_links
     
-    def change_currency(self, currency=None):
-        currency_element = self.find_element(By.CSS_SELECTOR, 'button[data-testid="header-currency-picker-trigger"]')
-        currency_element.click()
 
 
 
